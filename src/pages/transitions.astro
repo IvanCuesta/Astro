@@ -1,0 +1,61 @@
+---
+---
+<html>
+<head>
+  <title>View Transitions</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      overflow: hidden; /* Evita que la página se desplace durante la animación */
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    nav a {
+      margin-right: 10px;
+      text-decoration: none;
+      color: #007bff;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    nav a:hover {
+      background-color: #ddd;
+    }
+    .content {
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    .fade-out {
+      opacity: 0;
+      transform: translateX(-100%);
+    }
+  </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('nav a').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const target = e.currentTarget as HTMLAnchorElement;
+          if (target && target.href) {
+            document.body.classList.add('fade-out');
+            setTimeout(() => {
+              window.location.href = target.href;
+            }, 500); // Tiempo de la transición
+          }
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/island">Island</a>
+    <a href="/transitions">Transitions</a>
+  </nav>
+  <h1>Pagina con Transiciones de Vista</h1>
+  <div class="content">
+    <p>Esta pagina demuestra transiciones de vista con deslizamiento y desvanecimiento.</p>
+  </div>
+</body>
+</html>
